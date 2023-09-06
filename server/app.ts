@@ -5,3 +5,6 @@ import cookieParser from "cookie-parser";
 
 //body parse
 app.use(express.json({ limit: "50mb" }));
+
+//cookie parser
+app.use(cookieParser());
