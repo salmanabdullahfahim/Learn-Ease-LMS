@@ -8,3 +8,10 @@ app.use(express.json({ limit: "50mb" }));
 
 //cookie parser
 app.use(cookieParser());
+
+//cors
+app.use(
+  cors({
+    origin: process.env.ORIGIN,
+  })
+);
