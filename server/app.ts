@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 export const app = express();
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -15,3 +15,11 @@ app.use(
     origin: process.env.ORIGIN,
   })
 );
+
+//testing api
+app.get("/test", (req: Request, res: Response, next: NextFunction) => {
+  res.status(200).json({
+    success: true,
+    message: "Api is working",
+  });
+});
