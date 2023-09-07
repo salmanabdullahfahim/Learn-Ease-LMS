@@ -23,3 +23,11 @@ app.get("/test", (req: Request, res: Response, next: NextFunction) => {
     message: "Api is working",
   });
 });
+
+//unknown routes
+
+app.all("*", (req: Request, res: Response, next: NextFunction) => {
+  const error = new Error(`Route ${req.originalUrl} not found`) as any;
+  error.status = 404;
+  next(error);
+});
