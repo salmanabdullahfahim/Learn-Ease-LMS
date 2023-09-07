@@ -21,4 +21,10 @@ module.exports = (
     const message = `Duplicate ${Object.keys(err.keyValues)} entered.`;
     err = new ErrorHandler(message, 400);
   }
+
+  //wrong jwt error
+  if (err.name === "jsonwebtokenError") {
+    const message = `Json web token is invalid. try again later.`;
+    err = new ErrorHandler(message, 400);
+  }
 };
