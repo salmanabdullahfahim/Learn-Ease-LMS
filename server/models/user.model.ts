@@ -16,3 +16,47 @@ export interface IUser extends Document {
   courses: Array<{ courseId: string }>;
   comparePassword: (password: string) => Promise<boolean>;
 }
+
+const userSchema: Schema<IUser> = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Please enter your Name"],
+    },
+    email: {
+      type: String,
+      required: [true, "Please enter your Email"],
+      validate: {
+        validator: function (value: string) {
+          return emailRegexPattern.test(value);
+        },
+        message: "Enter a valid email address",
+      },
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: [true, "Please enter your Password"],
+      minLength: [6, "password must be at least 6 characters"],
+      select: false,
+    },
+    avatar: {
+      public_id: String,
+      url: String,
+    },
+    role: {
+      type: String,
+      default: "user",
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    courses: [
+      {
+        courseId: String,
+      },
+    ],
+  },
+  { timestamps: true }
+);
