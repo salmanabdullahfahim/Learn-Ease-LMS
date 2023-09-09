@@ -29,6 +29,10 @@ export const registrationUser = catchAsyncError(
       };
 
       const activationToken = createActivationToken(user);
+
+      const activationCode = activationToken.activationCode;
+
+      const data = { user: { name: user.name }, activationCode };
     } catch (error: any) {
       return next(new ErrorHandler(error.message, 400));
     }
