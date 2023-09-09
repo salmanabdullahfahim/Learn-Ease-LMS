@@ -1,8 +1,10 @@
+require("dotenv").config();
 import { Request, Response, NextFunction } from "express";
 import userModel from "../models/user.model";
 import ErrorHandler from "../utils/ErrorHandler";
 import { catchAsyncError } from "../middleware/catchAsyncErrors";
 import jwt, { Secret } from "jsonwebtoken";
+import ejs from "ejs";
 
 //register user
 interface IRegisterBody {
@@ -33,6 +35,8 @@ export const registrationUser = catchAsyncError(
       const activationCode = activationToken.activationCode;
 
       const data = { user: { name: user.name }, activationCode };
+
+      const html = await ejs.renderFile();
     } catch (error: any) {
       return next(new ErrorHandler(error.message, 400));
     }
