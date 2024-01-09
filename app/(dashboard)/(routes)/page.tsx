@@ -1,7 +1,9 @@
+import { UserButton } from "@clerk/nextjs";
+
 export default function Home() {
   return (
     <div>
-      <h2>This is a protected route</h2>
+      <UserButton afterSignOutUrl="/" />
     </div>
   );
 }
